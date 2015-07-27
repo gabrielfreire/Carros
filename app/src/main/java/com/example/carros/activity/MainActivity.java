@@ -1,10 +1,11 @@
-package com.example.carros.carros;
+package com.example.carros.activity;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.carros.R;
 
 
 public class MainActivity extends AppCompatActivity {
