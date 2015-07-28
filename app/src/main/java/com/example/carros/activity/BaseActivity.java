@@ -10,6 +10,7 @@ import com.example.carros.R;
 public class BaseActivity extends livroandroid.lib.activity.BaseActivity {
 
 
+    // Ativar a Toolbar como ActionBar
     protected void setUpToolbar(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 

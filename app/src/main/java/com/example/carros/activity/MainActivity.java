@@ -19,11 +19,11 @@ import livroandroid.lib.fragment.NavigationDrawerFragment;
 
 
 public class MainActivity extends BaseActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks
-{
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     private NavDrawerMenuAdapter listAdapter;
     private NavigationDrawerFragment mNavDrawerFragment;
+
 
 
     @Override
@@ -75,6 +75,7 @@ public class MainActivity extends BaseActivity
     //
 
 
+    // Deve retornar a view e o identificador do ListView
     @Override
     public NavigationDrawerFragment.NavDrawerListView getNavDrawerView(NavigationDrawerFragment navigationDrawerFragment, LayoutInflater layoutInflater, ViewGroup container) {
 
@@ -82,6 +83,9 @@ public class MainActivity extends BaseActivity
         return new NavigationDrawerFragment.NavDrawerListView(view, R.id.listView);
     }
 
+
+
+    // Este método deve retornar o adapter que vai preencher o ListView
     @Override
     public ListAdapter getNavDrawerListAdapter(NavigationDrawerFragment navigationDrawerFragment) {
 
@@ -93,9 +97,18 @@ public class MainActivity extends BaseActivity
         return listAdapter;
     }
 
-    @Override
-    public void onNavDrawerItemSelected(NavigationDrawerFragment navigationDrawerFragment, int i) {
 
+
+    // Método chamado ao selecionar um item do ListView
+    @Override
+    public void onNavDrawerItemSelected(NavigationDrawerFragment navigationDrawerFragment, int position) {
+
+        List<NavDrawerMenuItem> list = NavDrawerMenuItem.getList();
+        NavDrawerMenuItem selectedItem = list.get(position);
+
+        // Seleciona a linha
+        this.listAdapter.setSelected(position, true);
+        toast("Clicou no item: "+getString(selectedItem.title));
     }
 
 }
