@@ -6,4 +6,9 @@
     <string name="configuracoes">Configurações</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="nav_drawer_username">Gabriel Freire</string>
+    <string name="nav_drawer_email">gfreire.braz@gmail.com</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

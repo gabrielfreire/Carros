@@ -7,6 +7,7 @@
     <ImageView android:id="@+id/img"
         android:src="@drawable/ic_drawer_carro"
         android:layout_marginRight="32dp"
+        android:layout_marginLeft="16dp"
         android:layout_width="24dp"
         android:layout_height="24dp" />
 
