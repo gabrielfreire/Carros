@@ -1,9 +1,10 @@
 package com.example.carros.fragment;
 
 
+import android.app.Fragment;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,7 @@ public class SiteGoogleFragment extends BaseFragment {
         return view;
     }
 
-    private void setWebviewClient(WebView webview) {
+    private void setWebViewClient(WebView webview) {
         webview.setWebViewClient(new WebViewClient() {
 
             @Override
@@ -57,6 +58,16 @@ public class SiteGoogleFragment extends BaseFragment {
             public void onPageFinished(WebView webview, String url) {
                 // Desliga o progress
                 progress.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                Log.d("livroandroid", "webview url: " + url);
+                if (url != null && url.endsWith("sobre.htm")) {
+
+                    AboutDialog.showAbout(getFragmentManager());
+                }
+                return super.shouldOverrideUrlLoading(view, url);
             }
         });
     }

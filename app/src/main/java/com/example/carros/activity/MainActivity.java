@@ -14,6 +14,7 @@ import android.widget.ListAdapter;
 import com.example.carros.R;
 import com.example.carros.adapter.NavDrawerMenuAdapter;
 import com.example.carros.adapter.NavDrawerMenuItem;
+import com.example.carros.fragment.AboutDialog;
 import com.example.carros.fragment.CarrosFragment;
 import com.example.carros.fragment.SiteGoogleFragment;
 
@@ -72,7 +73,8 @@ public class MainActivity extends BaseActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) { // Mostra o dialog com informações do aplicativo
+            AboutDialog.showAbout(getSupportFragmentManager());
             return true;
         }
 
