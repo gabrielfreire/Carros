@@ -22,6 +22,13 @@ import java.util.List;
 import livroandroid.lib.fragment.NavigationDrawerFragment;
 
 
+/**
+ * Activity principal.
+ *
+ * A interface NavigationDrawerCallbacks é utilizada na lib android-utils para que
+ * a activity possa retornar a view do menu lateral.
+ *
+ */
 public class MainActivity extends BaseActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
@@ -41,7 +48,7 @@ public class MainActivity extends BaseActivity
         mNavDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager()
                                                                 .findFragmentById(R.id.nav_drawer_fragment);
 
-        // Configura o drawer layout
+        // Configura o drawer layout com o NavigationDrawerFragment (add no layout)
         DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
 
         mNavDrawerFragment.setUp(drawerLayout);
@@ -81,7 +88,10 @@ public class MainActivity extends BaseActivity
     //
 
 
-    // Deve retornar a view e o identificador do ListView
+
+    /*
+    Deve retornar a view e o identificador do ListView
+     */
     @Override
     public NavigationDrawerFragment.NavDrawerListView getNavDrawerView(NavigationDrawerFragment navigationDrawerFragment, LayoutInflater layoutInflater, ViewGroup container) {
 
@@ -98,7 +108,9 @@ public class MainActivity extends BaseActivity
 
 
 
-    // Este método deve retornar o adapter que vai preencher o ListView
+    /*
+     Este método deve retornar o adapter que vai preencher o ListView
+      */
     @Override
     public ListAdapter getNavDrawerListAdapter(NavigationDrawerFragment navigationDrawerFragment) {
 
@@ -112,7 +124,9 @@ public class MainActivity extends BaseActivity
 
 
 
-    // Método chamado ao selecionar um item do ListView
+    /*
+     Método chamado ao selecionar um item do ListView
+      */
     @Override
     public void onNavDrawerItemSelected(NavigationDrawerFragment navigationDrawerFragment, int position) {
 

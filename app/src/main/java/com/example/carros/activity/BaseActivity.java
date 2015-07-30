@@ -5,7 +5,7 @@ import com.example.carros.R;
 
 
 /**
- * Classe base para todas as activities - 27/07/2015.
+ * Classe base para todas as  activity do projeto.
  */
 public class BaseActivity extends livroandroid.lib.activity.BaseActivity {
 

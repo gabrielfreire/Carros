@@ -3,8 +3,13 @@ package com.example.carros;
 import android.app.Application;
 import android.util.Log;
 
+
 /**
- * Created by Gabriel on 27/07/2015.
+ * Classe "Singleton", utilizada para armazenar informações de forma global no aplicativo.
+ *
+ * Obs: Esta classe faz parte do ciclo de vida da aplicação
+ * e é criada junto aos processos, isso evita a criação de variáveis estáticas
+ * fora do escopo, por exemplo.
  */
 public class CarrosApplication extends Application {
 
@@ -24,6 +29,7 @@ public class CarrosApplication extends Application {
         // Salva a instância para termos acesso como Singleton
         instance = this;
     }
+
 
     @Override
     public void onTerminate(){
