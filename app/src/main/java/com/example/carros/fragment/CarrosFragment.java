@@ -27,6 +27,17 @@ public class CarrosFragment extends BaseFragment {
     private List<Carro> carros;
     private LinearLayoutManager mLayoutManager;
 
+    private String tipo;
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (getArguments() != null) {
+            this.tipo = getArguments().getString("tipo");
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -57,7 +68,7 @@ public class CarrosFragment extends BaseFragment {
      */
     private void taskCarros() {
         // Busca os carros
-        this.carros = CarroService.getCarros(getContext());
+        this.carros = CarroService.getCarros(getContext(), tipo);
 
         // Atualiza a lista
         recyclerView.setAdapter(new CarroAdapter(getContext(), carros, onClickCarro()));

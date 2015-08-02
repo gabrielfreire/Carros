@@ -28,5 +28,8 @@
 
     <string name="about_dialog_title">Livro Android</string>
     <string name="ok">OK</string>
+    <string name="classico">Clássico</string>
+    <string name="esportivo">Esportivo</string>
+    <string name="luxo">Luxo</string>
 
 </resources>

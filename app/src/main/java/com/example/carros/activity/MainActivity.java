@@ -15,7 +15,7 @@ import com.example.carros.R;
 import com.example.carros.adapter.NavDrawerMenuAdapter;
 import com.example.carros.adapter.NavDrawerMenuItem;
 import com.example.carros.fragment.AboutDialog;
-import com.example.carros.fragment.CarrosFragment;
+import com.example.carros.fragment.CarrosTabFragment;
 import com.example.carros.fragment.SiteGoogleFragment;
 
 import java.util.List;
@@ -139,7 +139,7 @@ public class MainActivity extends BaseActivity
         this.listAdapter.setSelected(position, true);
 
         if (position == 0) {
-            replaceFragment(new CarrosFragment());
+            replaceFragment(new CarrosTabFragment());
 
         } else if (position == 1) {
             replaceFragment(new SiteGoogleFragment());
