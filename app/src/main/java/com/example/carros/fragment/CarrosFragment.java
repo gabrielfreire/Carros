@@ -1,6 +1,7 @@
 package com.example.carros.fragment;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -9,9 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.carros.R;
+import com.example.carros.activity.CarroActivity;
 import com.example.carros.adapter.CarroAdapter;
 import com.example.carros.domain.Carro;
 import com.example.carros.domain.CarroService;
@@ -81,7 +82,12 @@ public class CarrosFragment extends BaseFragment {
             @Override
             public void onClickCarro(View view, int idx) {
                 Carro c = carros.get(idx);
-                Toast.makeText(getContext(), "Carro: " + c.nome, Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getContext(), CarroActivity.class);
+                intent.putExtra("carro", c);
+                startActivity(intent);
+
+                //Toast.makeText(getContext(), "Carro: " + c.nome, Toast.LENGTH_SHORT).show();
             }
         };
     }

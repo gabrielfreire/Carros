@@ -31,5 +31,7 @@
     <string name="classico">Clássico</string>
     <string name="esportivo">Esportivo</string>
     <string name="luxo">Luxo</string>
+    <string name="title_activity_carro">CarroActivity</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
