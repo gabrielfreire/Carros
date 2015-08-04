@@ -22,7 +22,7 @@
 
             <!-- Foto do carro -->
             <ImageView
-                android:id="@+id/img"
+                android:id="@+id/imgCarro"
                 android:layout_width="116dp"
                 android:layout_height="50dp" />
 

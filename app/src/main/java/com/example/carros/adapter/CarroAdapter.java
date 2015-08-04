@@ -55,7 +55,9 @@ public class CarroAdapter extends RecyclerView.Adapter<CarroAdapter.CarrosViewHo
         holder.tNome.setText(c.nome);
         holder.progress.setVisibility(View.VISIBLE);
 
+
         // Faz o download da foto e mostra o ProgressBar
+
         Picasso.with(context).load(c.urlFoto).fit().into(holder.img, new com.squareup.picasso.Callback() {
             @Override
             public void onSuccess() {
@@ -97,7 +99,7 @@ public class CarroAdapter extends RecyclerView.Adapter<CarroAdapter.CarrosViewHo
 
             // Cria as views para salvar no ViewHolder
             tNome = (TextView)view.findViewById(R.id.text);
-            img = (ImageView) view.findViewById(R.id.img);
+            img = (ImageView) view.findViewById(R.id.imgCarro);
             progress = (ProgressBar)view.findViewById(R.id.progressImg);
             cardView = (CardView) view.findViewById(R.id.card_view);
         }
