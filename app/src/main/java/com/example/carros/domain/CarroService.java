@@ -5,7 +5,9 @@ import android.util.Log;
 
 import com.example.carros.R;
 
-import org.w3c.dom.Element;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Node;
 
 import java.io.IOException;
@@ -34,8 +36,9 @@ public class CarroService {
 
 
         try{
-            String xml = readFile(contexto, tipo);
-            List<Carro> carros = parseXML(contexto, xml);
+            String json = readFile(contexto, tipo);
+            //List<Carro> carros = parseXML(contexto, xml);
+            List<Carro> carros = parseJSON(contexto, json);
 
             return carros;
 
@@ -78,12 +81,52 @@ public class CarroService {
     }
 
 
+    private static List<Carro> parseJSON(Context contexto, String json) throws IOException {
+
+        List<Carro> carros = new ArrayList<Carro>();
+
+        try {
+            JSONObject root = new JSONObject(json);
+            JSONObject obj = root.getJSONObject("carros");
+            JSONArray jsonCarros = obj.getJSONArray("carro");
+
+            // Insere cada carro na lista
+            for (int i = 0; i < jsonCarros.length(); i++) {
+                JSONObject jsonCarro = jsonCarros.getJSONObject(i);
+                Carro c = new Carro();
+
+                // Lê as informações de cada carro
+                c.nome = jsonCarro.optString("nome");
+                c.desc = jsonCarro.optString("desc");
+                c.urlFoto = jsonCarro.optString("url_foto");
+                c.urlInfo = jsonCarro.optString("url_info");
+                c.urlVideo = jsonCarro.optString("url_video");
+                c.latitude = jsonCarro.optString("latitude");
+                c.longitude = jsonCarro.optString("longitude");
+
+                if (LOG_ON) {
+                    Log.d(TAG, "Carro " + c.nome + " > "+c.urlFoto);
+                }
+                carros.add(c);
+            }
+
+        } catch (JSONException e) {
+            throw new IOException(e.getMessage(), e);
+        }
+        return carros;
+    }
+
+
+
+
     /*
     Faz o parser do XML e cria a lista de carros!!
 
     Recebe o tipo do carro desejado (esportivo,luxo ou clássicos), o arquivo xml correto é lido na pasta /res/raw.
     O retorno é uma String no formato XML, então é feito o parse e logo depois é criada a lista de carros.
      */
+
+    /*
     private static List<Carro> parseXML(Context contexto, String xml) {
 
         List<Carro> carros = new ArrayList<Carro>();
@@ -116,5 +159,5 @@ public class CarroService {
         }
         return carros;
     }
-
+*/
 }
