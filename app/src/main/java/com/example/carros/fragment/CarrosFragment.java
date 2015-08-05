@@ -72,7 +72,7 @@ public class CarrosFragment extends BaseFragment {
      */
     private void taskCarros() {
         // Busca os carros: dispara a Task
-        startTask("carros", new GetCarrosTask());
+        startTask("carros", new GetCarrosTask(), R.id.progress);
 
         // Busca os carros
         //this.carros = CarroService.getCarros(getContext(), tipo);
