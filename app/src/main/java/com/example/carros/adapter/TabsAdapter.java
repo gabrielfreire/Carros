@@ -29,11 +29,11 @@ public class TabsAdapter extends FragmentPagerAdapter {
 
         switch (position) {
             case 0:
-                args.putString("tipo", "clássico");
+                args.putString("tipo", "classicos");
                 break;
 
             case 1:
-                args.putString("tipo", "esportivo");
+                args.putString("tipo", "esportivos");
                 break;
 
             case 2:

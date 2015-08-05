@@ -2,11 +2,13 @@ package com.example.carros.fragment;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import com.example.carros.adapter.CarroAdapter;
 import com.example.carros.domain.Carro;
 import com.example.carros.domain.CarroService;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -68,11 +71,41 @@ public class CarrosFragment extends BaseFragment {
     Criar e preencher a lista de carros
      */
     private void taskCarros() {
+        // Busca os carros: dispara a Task
+        new GetCarrosTask().execute();
+
         // Busca os carros
-        this.carros = CarroService.getCarros(getContext(), tipo);
+        //this.carros = CarroService.getCarros(getContext(), tipo);
 
         // Atualiza a lista
-        recyclerView.setAdapter(new CarroAdapter(getContext(), carros, onClickCarro()));
+        //recyclerView.setAdapter(new CarroAdapter(getContext(), carros, onClickCarro()));
+    }
+
+    // Task para buscar os carros
+    private class GetCarrosTask extends AsyncTask<Void,Void,List<Carro>> {
+
+
+        @Override
+        protected List<Carro> doInBackground(Void... params) {
+            try {
+                // Busca os carros em background (Thread)
+                return CarroService.getCarros(getContext(), tipo);
+
+            } catch (IOException e) {
+                Log.e("livroandroid", e.getMessage(), e);
+                return null;
+            }
+        }
+
+        // Atualiza a interface
+        protected void onPostExecute(List<Carro> carros) {
+            if (carros != null) {
+                CarrosFragment.this.carros = carros;
+
+                // Atualiza a view na UI Thread
+                recyclerView.setAdapter(new CarroAdapter(getContext(), carros, onClickCarro()));
+            }
+        }
     }
 
 

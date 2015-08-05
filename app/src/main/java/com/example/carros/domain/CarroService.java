@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import livroandroid.lib.utils.FileUtils;
+import livroandroid.lib.utils.HttpHelper;
 import livroandroid.lib.utils.XMLUtils;
 
 
@@ -27,14 +28,28 @@ public class CarroService {
     private static final boolean LOG_ON = false;
     private static final String TAG = "CarroService";
 
+    private static final String URL = "http://www.livroandroid.com.br/livro/carros/carros_{tipo}.json";
 
 
 
+    /*
+    Recebe o tipo de carro desejado, a url é montada para buscar os carros no servidor.
 
-    public static List<Carro> getCarros(Context contexto, String tipo) {
+    Uma vez que temos a URL do web service, basta uma linha de código para fazer a requisição HTTP por GET e obter o resultado
+    utilizando HttpHelper.doGet(url).
+     */
+    public static List<Carro> getCarros(Context contexto, String tipo) throws IOException {
+
+        String url = URL.replace("{tipo}", tipo);
+        // Faz a requisição HTTP no servidor e retorna a string com o conteúdo.
+        String json = HttpHelper.doGet(url);
+
+        List<Carro> carros = parseJSON(contexto, json);
+        return carros;
 
 
 
+/*
         try{
             String json = readFile(contexto, tipo);
             //List<Carro> carros = parseXML(contexto, xml);
@@ -43,13 +58,11 @@ public class CarroService {
             return carros;
 
         } catch (Exception e) {
-
-
-            // TODO explicar exception
             Log.e(TAG,"Erro ao ler os carros: "+e.getMessage(), e);
 
             return null;
         }
+        */
 
 /*
         List<Carro> carros = new ArrayList<Carro>();
