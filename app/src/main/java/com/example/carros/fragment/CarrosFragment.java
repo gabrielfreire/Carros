@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +22,8 @@ import com.example.carros.domain.CarroService;
 
 import java.io.IOException;
 import java.util.List;
+
+import livroandroid.lib.utils.AndroidUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -138,5 +141,27 @@ public class CarrosFragment extends BaseFragment {
         };
     }
 
+    /*
+    Verificar conexão com a internet
+     */
+
+    /*
+    private SwipeRefreshLayout.OnRefreshListener OnRefreshListener() {
+
+        return new SwipeRefreshLayout.OnRefreshListener() {
+
+            @Override
+            public void onRefresh() {
+                // Valida se existe conexão ao fazer o gesto Pull to Refrsh
+                if (AndroidUtils.isNetworkAvailable(getContext())) {
+                    taskCarros(true);
+                } else {
+                    swipeLayout.setRefreshing(false);
+                    alert(R.string.error_conexao_indisponivel);
+                }
+            }
+        };
+    }
+    */
 
 }
