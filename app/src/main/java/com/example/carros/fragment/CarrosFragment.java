@@ -72,7 +72,7 @@ public class CarrosFragment extends BaseFragment {
      */
     private void taskCarros() {
         // Busca os carros: dispara a Task
-        new GetCarrosTask().execute();
+        startTask("carros", new GetCarrosTask());
 
         // Busca os carros
         //this.carros = CarroService.getCarros(getContext(), tipo);
@@ -82,11 +82,11 @@ public class CarrosFragment extends BaseFragment {
     }
 
     // Task para buscar os carros
-    private class GetCarrosTask extends AsyncTask<Void,Void,List<Carro>> {
+    private class GetCarrosTask implements TaskListener<List<Carro>> {
 
 
         @Override
-        protected List<Carro> doInBackground(Void... params) {
+        public List<Carro> execute() throws Exception {
             try {
                 // Busca os carros em background (Thread)
                 return CarroService.getCarros(getContext(), tipo);
@@ -98,13 +98,26 @@ public class CarrosFragment extends BaseFragment {
         }
 
         // Atualiza a interface
-        protected void onPostExecute(List<Carro> carros) {
+        @Override
+        public void updateView(List<Carro> carros) {
             if (carros != null) {
+                // Salva a lista de carros no atributo da classe
                 CarrosFragment.this.carros = carros;
 
                 // Atualiza a view na UI Thread
                 recyclerView.setAdapter(new CarroAdapter(getContext(), carros, onClickCarro()));
             }
+        }
+
+        @Override
+        public void onError(Exception e) {
+            // Qualquer exceção lançada no método execute vai cair aqui.
+            alert("Ocorreu algum erro ao buscar os dados");
+        }
+
+        @Override
+        public void onCancelled(String s) {
+
         }
     }
 
