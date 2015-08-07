@@ -8,7 +8,6 @@ import com.example.carros.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Node;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ import java.util.List;
 
 import livroandroid.lib.utils.FileUtils;
 import livroandroid.lib.utils.HttpHelper;
-import livroandroid.lib.utils.XMLUtils;
 
 
 /**
@@ -97,6 +95,8 @@ public class CarroService {
     private static List<Carro> parseJSON(Context contexto, String json) throws IOException {
 
         List<Carro> carros = new ArrayList<Carro>();
+
+        //System.out.println("json: "+json);
 
         try {
             JSONObject root = new JSONObject(json);

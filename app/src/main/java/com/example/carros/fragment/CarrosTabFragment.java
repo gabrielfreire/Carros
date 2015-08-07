@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import com.example.carros.R;
 import com.example.carros.adapter.TabsAdapter;
 
+import livroandroid.lib.utils.Prefs;
+
 
 /**
  * Created by Gabriel on 02/08/2015.
@@ -19,6 +21,7 @@ public class CarrosTabFragment extends BaseFragment
 
     private ViewPager mViewPager;
     private TabLayout tabLayout;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,6 +55,11 @@ public class CarrosTabFragment extends BaseFragment
         // Se mudar a ViewPager atualiza a tab selecionada
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
+
+        // Ao criar a view, mostra a última tab selecionada
+        //int tabIdx = Prefs.getInteger(getContext(), "tabIdx");
+        //mViewPager.setCurrentItem(tabIdx);
+
         return view;
     }
 
@@ -61,6 +69,9 @@ public class CarrosTabFragment extends BaseFragment
 
         // Se mudar a tab, atualiza o ViewPager
         mViewPager.setCurrentItem(tab.getPosition());
+
+        // Salva o índice da página/tab selecionada
+        //Prefs.setInteger(getContext(), "tabIdx", mViewPager.getCurrentItem());
     }
 
     @Override
